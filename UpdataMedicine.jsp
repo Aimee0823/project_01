@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ page import="javaee.po.ClassicFormula" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -40,41 +41,38 @@
 </style>
 <script>
         function chongzhi() {
-            document.form3.reset();
+            document.form4.reset();
         }
         function checkform(){
-        	if(document.form3.name.value==""){
+        	if(document.form4.name.value==""){
         		alert("经方名称不能为空！");
         		return false;
         	}else{
         		return true;
         	}
         }
-        function checkName(){
-        	alert("用户名已存在！");
-        }
     </script>
+    
 </head>
 <body>
- <%
-    String msg = (String)request.getAttribute("msg");
-    if(msg!=null){
-    %>
-    <%=msg %>
-    <%} %>
+<jsp:useBean id="classicFormula" class="javaee.po.ClassicFormula"/>
+<%
+classicFormula=(ClassicFormula)request.getAttribute("classicFormula");
+%>
 <div class="d1">
     <div class="h8">
-       添加经方信息
+       修改经方信息
     </div>
-    <form name="form3" method="get" action="MedicineServlet" onsubmit="return checkform()">
-    <input type="hidden" name="action" value="addProc"> 
+    <form name="form4" method="get" action="MedicineServlet" onsubmit="return checkform()">
+    <input type="hidden" name="action" value="updataProc"> 
+    <input type="hidden" name="id" value="<%=classicFormula.getId()%>"> 
         <table class="tab1">
             <tr class="tr1">
                 <td class="td1">
                     经方名称：
                 </td>
                 <td class="td2">
-                    <input type="text" class="h9" name="name" size="50" >
+                    <input type="text" class="h9" name="name" value="<%=classicFormula.getName()%>" size="50" >
                 </td>
             </tr>
             <tr class="tr1">
@@ -82,7 +80,7 @@
                     经方别名：
                 </td>
                 <td class="td2">
-                    <input type="text" class="h9" name="alias" size="50" >
+                    <input type="text" class="h9" name="alias" value="<%=classicFormula.getAlias()%>"  size="50" >
                 </td>
             </tr>
             <tr class="tr1">
@@ -90,7 +88,7 @@
                     用法：
                 </td>
                 <td class="td2">
-                    <input type="text" class="h9" name="usage1" size="50" >
+                    <input type="text" class="h9" name="usage1" value="<%=classicFormula.getUsage1()%>" size="50" >
                 </td>
             </tr>
             <tr class="tr1">
@@ -98,7 +96,7 @@
                     经方解释：
                 </td>
                 <td class="td2">
-                    <input type="text" class="h9" name="comment" size="50"  >
+                    <input type="text" class="h9" name="comment" value="<%=classicFormula.getComment()%>"  size="50"  >
                 </td>
             </tr>
             <tr class="tr1">

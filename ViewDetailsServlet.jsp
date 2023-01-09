@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+ <%@ page import="java.util.ArrayList" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -31,58 +32,54 @@
         .h9{
            height:25px;
            width:400px;
-           font-size: 17px;
         }
         .h11{
            font-size: 17px;
            height: 35px;
         }
 </style>
-<script>
-        function chongzhi() {
-            document.form3.reset();
-        }
-        function checkform(){
-        	if(document.form3.name.value==""){
-        		alert("经方名称不能为空！");
-        		return false;
-        	}else{
-        		return true;
-        	}
-        }
-        function checkName(){
-        	alert("用户名已存在！");
-        }
-    </script>
 </head>
 <body>
- <%
-    String msg = (String)request.getAttribute("msg");
-    if(msg!=null){
-    %>
-    <%=msg %>
-    <%} %>
+<%ArrayList<String> list2 = (ArrayList<String>)request.getAttribute("list2");
+%>
 <div class="d1">
     <div class="h8">
-       添加经方信息
+       查看详细信息
     </div>
-    <form name="form3" method="get" action="MedicineServlet" onsubmit="return checkform()">
-    <input type="hidden" name="action" value="addProc"> 
+    <%if(list2.size()>0){ %>
+    <form name="form3" method="get" action="MedicineServlet">
+    <input type="hidden" name="action" value="list"> 
         <table class="tab1">
             <tr class="tr1">
                 <td class="td1">
-                    经方名称：
+                    编号：
                 </td>
                 <td class="td2">
-                    <input type="text" class="h9" name="name" size="50" >
+                <%=list2.get(0)%>
                 </td>
             </tr>
             <tr class="tr1">
                 <td class="td1">
-                    经方别名：
+                    中药处方名称：
                 </td>
                 <td class="td2">
-                    <input type="text" class="h9" name="alias" size="50" >
+                   <%=list2.get(1)%> 
+                </td>
+            </tr>
+            <tr class="tr1">
+                <td class="td1">
+                    中草药名称：
+                </td>
+                <td class="td2">
+                   <%=list2.get(2)%>
+                </td>
+            </tr>
+            <tr class="tr1">
+                <td class="td1">
+                    用量：
+                </td>
+                <td class="td2">
+                    <%=list2.get(3)%>
                 </td>
             </tr>
             <tr class="tr1">
@@ -90,26 +87,18 @@
                     用法：
                 </td>
                 <td class="td2">
-                    <input type="text" class="h9" name="usage1" size="50" >
-                </td>
-            </tr>
-            <tr class="tr1">
-                <td class="td1">
-                    经方解释：
-                </td>
-                <td class="td2">
-                    <input type="text" class="h9" name="comment" size="50"  >
+                    <%=list2.get(4)%>
                 </td>
             </tr>
             <tr class="tr1">
                 <td class="td2">
-                    <input type="submit" class="h11" name="bc" value="保存">
-                    <input type="reset" class="h11" name="cz" value="重置" onclick="chongzhi()">
+                    <input type="submit" class="h11" name="bc" value="返回">
                 </td>
                 <td></td>
             </tr>
         </table>
     </form>
+    <%} %>
 </div>
 </body>
 </html>
