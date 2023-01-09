@@ -11,7 +11,7 @@
          
          }
         .tr1{
-            height: 70px;
+            height: 71px;
             text-align: center;
             
         }
