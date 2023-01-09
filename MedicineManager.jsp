@@ -19,7 +19,7 @@
             text-align:center;
         }
         .top2{
-            width: 70%;
+            width: 71%;
             height: 60px;
             text-align:right;
             float:left;
