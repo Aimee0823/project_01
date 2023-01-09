@@ -1,0 +1,5 @@
+#忽略MedicineManager.jsp这个文件
+MedicineManager.jsp
+
+#忽略test目录下的所有文件
+test/
